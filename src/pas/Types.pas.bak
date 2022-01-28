@@ -69,4 +69,4 @@ type LPCTSTR   = PChar;
 
 implementation
 
-end.
+end;

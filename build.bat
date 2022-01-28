@@ -10,6 +10,7 @@ if not exist %cd%\out\debug\   md %cd%\out\debug
 if not exist %cd%\out\release\ md %cd%\out\release
 
 %FPC_CALL% -o.\out\tmp\kernel32.s src\pas\kernel32.pas
+%FPC_CALL% -o.\out\tmp\user32.s   src\pas\user32.pas
 %FPC_CALL% -o.\out\tmp\test1.s    tst\test1.pas
 
 :: SysInit.S > SysInit.o

@@ -5,12 +5,12 @@
 // only for non-profit usage !!!
 // ----------------------------------------------------------
 {$mode delphi}
-unit Windows;
+unit user32;
 
 interface
-uses
-  kernel32,
-  user32;
+uses Types;
+
+function MessageBoxA(hwnd: HWND; lpText: LPCSTR; lpCaption: LPCSTR; uType: UINT ): Integer; stdcall; external 'user32.dll' name 'MessageBoxA';
 
 implementation
 

@@ -1,14 +1,13 @@
 // ----------------------------------------------------------
 // This file is part of RTL.
 //
-// (c) Copyright 2022 Jens Kallup - paule32
+// (c) Copyright 2021 Jens Kallup - paule32
 // only for non-profit usage !!!
 // ----------------------------------------------------------
 {$mode delphi}
 unit system;
 
 interface
-uses Types;
 
 type CodePointer = Pointer;
 type PShortString = ^ShortString;
