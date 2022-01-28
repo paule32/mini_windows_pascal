@@ -10,13 +10,15 @@ unit SysInit;
 interface
 uses Windows, kernel32;
 
+procedure Entry;
+
 implementation
 
-procedure PascalMain; external name 'PASCALMAIN';
+//procedure PascalMain; external name 'PASCALMAIN';
 
 procedure Entry; [public, alias: '_mainCRTStartup'];
 begin
-  PascalMain;
+//  PascalMain;
   ExitProcess(0);
 end;
 

@@ -41,14 +41,13 @@ sed -e '/^\.section \.data\.n_FPC_RESSTRINITTABLES\,\"d\"/,+4d'      < .\out\tmp
 sed -e '/^\.section \.data\.n_INITFINAL\,\"d\"/,+4d'                 < .\out\tmp\test1.s  > .\out\tmp\test1X.s
 sed -e '/^\.section \.data\.n_FPC_WIDEINITTABLES\,\"d\"/,+4d'        < .\out\tmp\test1X.s > .\out\tmp\test1.s
 sed -e '/^\.section \.data\.n___heapsize\,\"d\"/,+4d'                < .\out\tmp\test1.s  > .\out\tmp\test1X.s
-sed -e '/^\.globl\tPASCALMAIN/,+4d'                                  < .\out\tmp\test1X.s > .\out\tmp\test1.s
-sed -e '/^\.section \.text\.n_main\,\"x\"/,+2d'                      < .\out\tmp\test1.s  > .\out\tmp\test1X.s
+sed -e '/^\.seh\_proc main/d'                                        < .\out\tmp\test1X.s > .\out\tmp\test1.s
+copy .\out\tmp\test1.s  .\out\tmp\test1X.s
 sed -e '/^\.section \.debug_frame/,$d'                               < .\out\tmp\test1X.s > .\out\tmp\test1.s
 sed -e '/^\.seh_stackalloc/d'                                        < .\out\tmp\test1.s  > .\out\tmp\test1X.s
 sed -e '/^\.seh_endprologue/d'                                       < .\out\tmp\test1X.s > .\out\tmp\test1.s
 sed -e '/^\.seh_endproc/d'                                           < .\out\tmp\test1.s  > .\out\tmp\test1X.s
 %FPC_PATH%\as.exe --64 -o .\out\tmp\test1.o .\out\tmp\test1X.s
 
-%FPC_PATH%\ld.exe -b pei-x86-64  --gc-sections    --entry=_mainCRTStartup -o .\tst\test1.exe ^
-	.\out\tmp\test1.o .\out\tmp\link.res
+%FPC_PATH%\ld.exe -b pei-x86-64  --gc-sections    --entry=_mainCRTStartup -o .\tst\test1.exe .\out\tmp\link.res
 %FPC_PATH%\strip.exe .\tst\test1.exe

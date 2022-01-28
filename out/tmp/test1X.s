@@ -1,14 +1,18 @@
 	.file "test1.pas"
 # Begin asmlist al_procedures
 
+.section .text.n_main,"x"
+	.balign 16,0x90
+.globl	PASCALMAIN
+PASCALMAIN:
+.globl	main
+main:
+.Lc1:
 # [test1.pas]
 # [7] begin
 	leaq	-40(%rsp),%rsp
 .Lc3:
 	call	fpc_initializeunits
-# [8] ExitProcess(0);
-	xorl	%ecx,%ecx
-	call	_$dll$kernel32$ExitProcess
 # [9] end.
 	call	fpc_do_exit
 	nop
