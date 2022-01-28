@@ -1,0 +1,6 @@
+upx.exe
+*.ppu
+*.o
+*.s
+*.a
+ppas.bat

@@ -1,6 +1,6 @@
 @echo off
 set FPC_PATH=G:\Lazarus\fpc\3.2.0\bin\x86_64-win64
-set FPC_CALL=%FPC_PATH%\fpc -al -Aas -n -s -Ur -Xe -WN -Og -Op3 -O2 -Rintel -Mdelphi -Fu.\src\pas
+set FPC_CALL=%FPC_PATH%\fpc -Aas -n -s -Ur -Xe -WN -Og -Op3 -O2 -Rintel -Mdelphi -Fu.\src\pas
 
 echo compile files, this can take some time ...
 
@@ -10,6 +10,7 @@ if not exist %cd%\out\debug\   md %cd%\out\debug
 if not exist %cd%\out\release\ md %cd%\out\release
 
 %FPC_CALL% -o.\out\tmp\kernel32.s src\pas\kernel32.pas
+%FPC_CALL% -o.\out\tmp\Types.s    src\pas\Types.pas
 %FPC_CALL% -o.\out\tmp\user32.s   src\pas\user32.pas
 %FPC_CALL% -o.\out\tmp\test1.s    tst\test1.pas
 
@@ -25,6 +26,9 @@ sed -e '/^.section .fpc.n_version/,+3d'                              < .\out\tmp
 sed -e '/^\# Begin asmlist al_dwarf_frame/,$d'                       < .\out\tmp\SystemX.s > .\out\tmp\System.s
 sed -e '/\.section \.data\.n___fpc_valgrind\,\"d\"/,+4d'             < .\out\tmp\System.s  > .\out\tmp\SystemX.s
 %FPC_PATH%\as.exe --64 -o .\out\tmp\System.o   .\out\tmp\SystemX.s
+
+%FPC_PATH%\as.exe --64 -o .\out\tmp\Types.o    .\out\tmp\Types.s
+%FPC_PATH%\as.exe --64 -o .\out\tmp\user32.o   .\out\tmp\user32.s
 
 :: Windows.S > Windows.o
 sed -e '/^.section .fpc.n_version/,+3d'                              < .\out\tmp\Windows.s  > .\out\tmp\WindowsX.s
@@ -50,5 +54,10 @@ sed -e '/^\.seh_endprologue/d'                                       < .\out\tmp
 sed -e '/^\.seh_endproc/d'                                           < .\out\tmp\test1.s  > .\out\tmp\test1X.s
 %FPC_PATH%\as.exe --64 -o .\out\tmp\test1.o .\out\tmp\test1X.s
 
-%FPC_PATH%\ld.exe -b pei-x86-64  --gc-sections    --entry=_mainCRTStartup -o .\tst\test1.exe .\out\tmp\link.res
+%FPC_PATH%\ld.exe -b pei-x86-64 	^
+	--gc-sections			^
+	--entry=_mainCRTStartup 	^
+	--library-path=out\tmp   	^
+	-o .\tst\test1.exe .\out\tmp\link.res
+
 %FPC_PATH%\strip.exe .\tst\test1.exe

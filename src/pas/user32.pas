@@ -10,7 +10,7 @@ unit user32;
 interface
 uses Types;
 
-function MessageBoxA(hwnd: HWND; lpText: LPCSTR; lpCaption: LPCSTR; uType: UINT ): Integer; stdcall; external 'user32.dll' name 'MessageBoxA';
+function MessageBoxA(hwnd: HWND; lpText: PChar; lpCaption: PChar; uType: UINT ): Integer; stdcall; external 'user32.dll' name 'MessageBoxA';
 
 implementation
 

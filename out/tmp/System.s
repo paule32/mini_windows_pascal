@@ -6,10 +6,7 @@
 .globl	fpc_ansistr_incr_ref
 fpc_ansistr_incr_ref:
 .Lc1:
-# [System.pas]
-# [245] procedure fpc_ansistr_incr_ref (    s: Pointer); compilerproc; begin end;
 	movq	%rcx,%rax
-# Var s located in register rax
 	ret
 .Lc2:
 
@@ -18,49 +15,44 @@ fpc_ansistr_incr_ref:
 .globl	fpc_ansistr_decr_ref
 fpc_ansistr_decr_ref:
 .Lc3:
-# [246] procedure fpc_ansistr_decr_ref (var s: Pointer); compilerproc; begin end;
 	movq	%rcx,%rax
-# Var s located in register rax
 	ret
 .Lc4:
+
+.section .text.n_fpc_ansistr_assign,"x"
+	.balign 16,0x90
+.globl	fpc_ansistr_assign
+fpc_ansistr_assign:
+.Lc5:
+	movq	%rcx,%rax
+	ret
+.Lc6:
 
 .section .text.n_fpc_initializeunits,"x"
 	.balign 16,0x90
 .globl	fpc_initializeunits
 fpc_initializeunits:
-.Lc5:
-# [248] procedure fpc_initializeunits; compilerproc; begin end;
+.Lc7:
 	ret
-.Lc6:
+.Lc8:
 
 .section .text.n_system$_$tvmt_$__$$_getvparent$$pvmt,"x"
 	.balign 16,0x90
 .globl	SYSTEM$_$TVMT_$__$$_GETVPARENT$$PVMT
 SYSTEM$_$TVMT_$__$$_GETVPARENT$$PVMT:
-.Lc7:
-# Var $result located in register rax
-# Var $self located in register rcx
-# [252] begin
-# Var $result located in register rax
-# [253] result := nil;
+.Lc9:
 	xorl	%eax,%eax
-# [254] end;
 	ret
-.Lc8:
+.Lc10:
 
 .section .text.n_fpc_get_input,"x"
 	.balign 16,0x90
 .globl	fpc_get_input
 fpc_get_input:
-.Lc9:
-# Var $result located in register rax
-# [257] begin
-# Var $result located in register rax
-# [258] result := nil;
+.Lc11:
 	xorl	%eax,%eax
-# [259] end;
 	ret
-.Lc10:
+.Lc12:
 
 .section .text.n_fpc_readln_end,"x"
 	.balign 16,0x90
@@ -68,12 +60,10 @@ fpc_get_input:
 fpc_readln_end:
 .globl	FPC_READLN_END
 FPC_READLN_END:
-.Lc11:
-# [262] begin end;
+.Lc13:
 	movq	%rcx,%rax
-# Var f located in register rax
 	ret
-.Lc12:
+.Lc14:
 
 .section .text.n_fpc_do_exit,"x"
 	.balign 16,0x90
@@ -81,69 +71,52 @@ FPC_READLN_END:
 fpc_do_exit:
 .globl	FPC_DO_EXIT
 FPC_DO_EXIT:
-.Lc13:
-# [265] begin end;
+.Lc15:
 	ret
-.Lc14:
+.Lc16:
 
 .section .text.n_fpc_iocheck,"x"
 	.balign 16,0x90
 .globl	fpc_iocheck
 fpc_iocheck:
-.Lc15:
-# [268] begin end;
+.Lc17:
 	ret
-.Lc16:
+.Lc18:
 
 .section .text.n_fpc_help_constructor,"x"
 	.balign 16,0x90
 .globl	fpc_help_constructor
 fpc_help_constructor:
-.Lc17:
-# Var $result located in register rax
-# Var _self located in register rcx
-# Var _vmt located in register rdx
-# Var _vmt_pos located in register r8d
-# [274] begin result := nil end;
-# Var $result located in register rax
+.Lc19:
 	xorl	%eax,%eax
 	ret
-.Lc18:
+.Lc20:
 
 .section .text.n_fpc_help_destructor,"x"
 	.balign 16,0x90
 .globl	fpc_help_destructor
 fpc_help_destructor:
-.Lc19:
-# [277] begin end;
+.Lc21:
 	movq	%rcx,%rax
-# Var _self located in register rax
-# Var _vmt located in register rdx
-# Var vmt_pos located in register r8d
 	ret
-.Lc20:
+.Lc22:
 
 .section .text.n_fpc_help_fail,"x"
 	.balign 16,0x90
 .globl	fpc_help_fail
 fpc_help_fail:
-.Lc21:
-# [280] begin end;
+.Lc23:
 	movq	%rcx,%rax
-# Var _self located in register rax
-# Var _vmt located in register rdx
-# Var vmt_pos located in register r8d
 	ret
-.Lc22:
+.Lc24:
 
 .section .text.n_fpc_reraise,"x"
 	.balign 16,0x90
 .globl	fpc_reraise
 fpc_reraise:
-.Lc23:
-# [283] begin end;
+.Lc25:
 	ret
-.Lc24:
+.Lc26:
 # End asmlist al_procedures
 # Begin asmlist al_rtti
 
@@ -152,7 +125,6 @@ fpc_reraise:
 .globl	RTTI_$SYSTEM_$$_formal
 RTTI_$SYSTEM_$$_formal:
 	.byte	0,7
-# [286] 
 	.ascii	"$formal"
 
 .section .rodata.n_RTTI_$SYSTEM_$$_typedformal,"d"
@@ -693,6 +665,92 @@ RTTI_$SYSTEM_$$_nestedprocpointer:
 	.quad	RTTI_$SYSTEM_$$_parentfp_void_pointer$indirect
 	.quad	8
 
+.section .rodata.n_RTTI_$SYSTEM_$$_UINT8,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_UINT8
+RTTI_$SYSTEM_$$_UINT8:
+	.byte	1,5
+	.ascii	"UInt8"
+	.byte	1
+	.long	0,255
+
+.section .rodata.n_RTTI_$SYSTEM_$$_UINT16,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_UINT16
+RTTI_$SYSTEM_$$_UINT16:
+	.byte	1,6
+	.ascii	"UInt16"
+	.byte	3
+	.long	0,65535
+
+.section .rodata.n_RTTI_$SYSTEM_$$_UINT64,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_UINT64
+RTTI_$SYSTEM_$$_UINT64:
+	.byte	20,6
+	.ascii	"UInt64"
+	.byte	7
+	.quad	0,-1
+
+.section .rodata.n_RTTI_$SYSTEM_$$_THANDLE,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_THANDLE
+RTTI_$SYSTEM_$$_THANDLE:
+	.byte	1,7
+	.ascii	"THandle"
+	.byte	5
+	.long	0,-1
+
+.section .rodata.n_RTTI_$SYSTEM_$$_HWND,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_HWND
+RTTI_$SYSTEM_$$_HWND:
+	.byte	1,4
+	.ascii	"HWND"
+	.byte	5
+	.long	0,-1
+
+.section .rodata.n_RTTI_$SYSTEM_$$_HANDLE,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_HANDLE
+RTTI_$SYSTEM_$$_HANDLE:
+	.byte	1,6
+	.ascii	"HANDLE"
+	.byte	5
+	.long	0,-1
+
+.section .rodata.n_RTTI_$SYSTEM_$$_PBYTE,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_PBYTE
+RTTI_$SYSTEM_$$_PBYTE:
+	.byte	29,5
+	.ascii	"PByte"
+	.quad	RTTI_$SYSTEM_$$_BYTE$indirect
+
+.section .rodata.n_RTTI_$SYSTEM_$$_PCHAR,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_PCHAR
+RTTI_$SYSTEM_$$_PCHAR:
+	.byte	29,5
+	.ascii	"PChar"
+	.quad	RTTI_$SYSTEM_$$_CHAR$indirect
+
+.section .rodata.n_RTTI_$SYSTEM_$$_LP,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_LP
+RTTI_$SYSTEM_$$_LP:
+	.byte	29,2
+	.ascii	"LP"
+	.quad	RTTI_$SYSTEM_$$_WORD$indirect
+
+.section .rodata.n_RTTI_$SYSTEM_$$_LPBOOL,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_LPBOOL
+RTTI_$SYSTEM_$$_LPBOOL:
+	.byte	29,6
+	.ascii	"LPBOOL"
+	.quad	RTTI_$SYSTEM_$$_LONGBOOL$indirect
+
 .section .rodata.n_RTTI_$SYSTEM_$$_PSHORTSTRING,"d"
 	.balign 8
 .globl	RTTI_$SYSTEM_$$_PSHORTSTRING
@@ -808,30 +866,30 @@ INIT_$SYSTEM_$$_TGUID:
 	.quad	0,0
 	.long	0
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def00000045,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def0000004F,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def00000045
-RTTI_$SYSTEM_$$_def00000045:
+.globl	RTTI_$SYSTEM_$$_def0000004F
+RTTI_$SYSTEM_$$_def0000004F:
 	.byte	12,0
 	.quad	8,8
 	.quad	RTTI_$SYSTEM_$$_BYTE$indirect
 	.byte	1
 	.quad	RTTI_$SYSTEM_$$_SHORTINT$indirect
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def00000046,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def00000050,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def00000046
-RTTI_$SYSTEM_$$_def00000046:
+.globl	RTTI_$SYSTEM_$$_def00000050
+RTTI_$SYSTEM_$$_def00000050:
 	.byte	12,0
 	.quad	8,8
 	.quad	RTTI_$SYSTEM_$$_BYTE$indirect
 	.byte	1
 	.quad	RTTI_$SYSTEM_$$_SHORTINT$indirect
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def00000047,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def00000051,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def00000047
-RTTI_$SYSTEM_$$_def00000047:
+.globl	RTTI_$SYSTEM_$$_def00000051
+RTTI_$SYSTEM_$$_def00000051:
 	.byte	12,0
 	.quad	6,6
 	.quad	RTTI_$SYSTEM_$$_BYTE$indirect
@@ -852,7 +910,7 @@ RTTI_$SYSTEM_$$_TGUID:
 	.quad	4
 	.quad	RTTI_$SYSTEM_$$_WORD$indirect
 	.quad	6
-	.quad	RTTI_$SYSTEM_$$_def00000045$indirect
+	.quad	RTTI_$SYSTEM_$$_def0000004F$indirect
 	.quad	8
 	.quad	RTTI_$SYSTEM_$$_LONGWORD$indirect
 	.quad	0
@@ -860,7 +918,7 @@ RTTI_$SYSTEM_$$_TGUID:
 	.quad	4
 	.quad	RTTI_$SYSTEM_$$_WORD$indirect
 	.quad	6
-	.quad	RTTI_$SYSTEM_$$_def00000046$indirect
+	.quad	RTTI_$SYSTEM_$$_def00000050$indirect
 	.quad	8
 	.quad	RTTI_$SYSTEM_$$_LONGWORD$indirect
 	.quad	0
@@ -872,7 +930,7 @@ RTTI_$SYSTEM_$$_TGUID:
 	.quad	8
 	.quad	RTTI_$SYSTEM_$$_BYTE$indirect
 	.quad	9
-	.quad	RTTI_$SYSTEM_$$_def00000047$indirect
+	.quad	RTTI_$SYSTEM_$$_def00000051$indirect
 	.quad	10
 
 .section .rodata.n_RTTI_$SYSTEM_$$_PGUID,"d"
@@ -953,7 +1011,7 @@ RTTI_$SYSTEM_$$_TTYPEKIND:
 	.byte	9
 	.ascii	"tkPointer"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .section .rodata.n_RTTI_$SYSTEM_$$_TTYPEKIND_s2o,"d"
@@ -1130,10 +1188,10 @@ INIT_$SYSTEM_$$_TSTRINGMESSAGETABLE:
 	.quad	0,0
 	.long	0
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def0000004D,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def00000057,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def0000004D
-RTTI_$SYSTEM_$$_def0000004D:
+.globl	RTTI_$SYSTEM_$$_def00000057
+RTTI_$SYSTEM_$$_def00000057:
 	.byte	12,0
 	.quad	16,1
 	.quad	RTTI_$SYSTEM_$$_TMSGSTRTABLE$indirect
@@ -1150,7 +1208,7 @@ RTTI_$SYSTEM_$$_TSTRINGMESSAGETABLE:
 	.long	24,2
 	.quad	RTTI_$SYSTEM_$$_LONGINT$indirect
 	.quad	0
-	.quad	RTTI_$SYSTEM_$$_def0000004D$indirect
+	.quad	RTTI_$SYSTEM_$$_def00000057$indirect
 	.quad	8
 
 .section .rodata.n_RTTI_$SYSTEM_$$_PSTRINGMESSAGETABLE,"d"
@@ -1185,7 +1243,7 @@ RTTI_$SYSTEM_$$_TINTERFACEENTRYTYPE:
 	.byte	17
 	.ascii	"etFieldValueClass"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .section .rodata.n_RTTI_$SYSTEM_$$_TINTERFACEENTRYTYPE_s2o,"d"
@@ -1267,10 +1325,10 @@ INIT_$SYSTEM_$$_TINTERFACETABLE:
 	.quad	0,0
 	.long	0
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def00000054,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def0000005E,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def00000054
-RTTI_$SYSTEM_$$_def00000054:
+.globl	RTTI_$SYSTEM_$$_def0000005E
+RTTI_$SYSTEM_$$_def0000005E:
 	.byte	12,0
 	.quad	56,1
 	.quad	RTTI_$SYSTEM_$$_TINTERFACEENTRY$indirect
@@ -1287,7 +1345,7 @@ RTTI_$SYSTEM_$$_TINTERFACETABLE:
 	.long	64,2
 	.quad	RTTI_$SYSTEM_$$_LONGWORD$indirect
 	.quad	0
-	.quad	RTTI_$SYSTEM_$$_def00000054$indirect
+	.quad	RTTI_$SYSTEM_$$_def0000005E$indirect
 	.quad	8
 
 .section .rodata.n_RTTI_$SYSTEM_$$_PINTERFACETABLE,"d"
@@ -1758,6 +1816,66 @@ INIT_$SYSTEM_$$_nestedprocpointer$indirect:
 RTTI_$SYSTEM_$$_nestedprocpointer$indirect:
 	.quad	RTTI_$SYSTEM_$$_nestedprocpointer
 
+.section .rodata.n_RTTI_$SYSTEM_$$_UINT8,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_UINT8$indirect
+RTTI_$SYSTEM_$$_UINT8$indirect:
+	.quad	RTTI_$SYSTEM_$$_UINT8
+
+.section .rodata.n_RTTI_$SYSTEM_$$_UINT16,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_UINT16$indirect
+RTTI_$SYSTEM_$$_UINT16$indirect:
+	.quad	RTTI_$SYSTEM_$$_UINT16
+
+.section .rodata.n_RTTI_$SYSTEM_$$_UINT64,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_UINT64$indirect
+RTTI_$SYSTEM_$$_UINT64$indirect:
+	.quad	RTTI_$SYSTEM_$$_UINT64
+
+.section .rodata.n_RTTI_$SYSTEM_$$_THANDLE,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_THANDLE$indirect
+RTTI_$SYSTEM_$$_THANDLE$indirect:
+	.quad	RTTI_$SYSTEM_$$_THANDLE
+
+.section .rodata.n_RTTI_$SYSTEM_$$_HWND,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_HWND$indirect
+RTTI_$SYSTEM_$$_HWND$indirect:
+	.quad	RTTI_$SYSTEM_$$_HWND
+
+.section .rodata.n_RTTI_$SYSTEM_$$_HANDLE,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_HANDLE$indirect
+RTTI_$SYSTEM_$$_HANDLE$indirect:
+	.quad	RTTI_$SYSTEM_$$_HANDLE
+
+.section .rodata.n_RTTI_$SYSTEM_$$_PBYTE,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_PBYTE$indirect
+RTTI_$SYSTEM_$$_PBYTE$indirect:
+	.quad	RTTI_$SYSTEM_$$_PBYTE
+
+.section .rodata.n_RTTI_$SYSTEM_$$_PCHAR,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_PCHAR$indirect
+RTTI_$SYSTEM_$$_PCHAR$indirect:
+	.quad	RTTI_$SYSTEM_$$_PCHAR
+
+.section .rodata.n_RTTI_$SYSTEM_$$_LP,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_LP$indirect
+RTTI_$SYSTEM_$$_LP$indirect:
+	.quad	RTTI_$SYSTEM_$$_LP
+
+.section .rodata.n_RTTI_$SYSTEM_$$_LPBOOL,"d"
+	.balign 8
+.globl	RTTI_$SYSTEM_$$_LPBOOL$indirect
+RTTI_$SYSTEM_$$_LPBOOL$indirect:
+	.quad	RTTI_$SYSTEM_$$_LPBOOL
+
 .section .rodata.n_RTTI_$SYSTEM_$$_PSHORTSTRING,"d"
 	.balign 8
 .globl	RTTI_$SYSTEM_$$_PSHORTSTRING$indirect
@@ -1818,23 +1936,23 @@ RTTI_$SYSTEM_$$_FILEREC$indirect:
 INIT_$SYSTEM_$$_TGUID$indirect:
 	.quad	INIT_$SYSTEM_$$_TGUID
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def00000045,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def0000004F,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def00000045$indirect
-RTTI_$SYSTEM_$$_def00000045$indirect:
-	.quad	RTTI_$SYSTEM_$$_def00000045
+.globl	RTTI_$SYSTEM_$$_def0000004F$indirect
+RTTI_$SYSTEM_$$_def0000004F$indirect:
+	.quad	RTTI_$SYSTEM_$$_def0000004F
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def00000046,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def00000050,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def00000046$indirect
-RTTI_$SYSTEM_$$_def00000046$indirect:
-	.quad	RTTI_$SYSTEM_$$_def00000046
+.globl	RTTI_$SYSTEM_$$_def00000050$indirect
+RTTI_$SYSTEM_$$_def00000050$indirect:
+	.quad	RTTI_$SYSTEM_$$_def00000050
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def00000047,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def00000051,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def00000047$indirect
-RTTI_$SYSTEM_$$_def00000047$indirect:
-	.quad	RTTI_$SYSTEM_$$_def00000047
+.globl	RTTI_$SYSTEM_$$_def00000051$indirect
+RTTI_$SYSTEM_$$_def00000051$indirect:
+	.quad	RTTI_$SYSTEM_$$_def00000051
 
 .section .rodata.n_RTTI_$SYSTEM_$$_TGUID,"d"
 	.balign 8
@@ -1902,11 +2020,11 @@ RTTI_$SYSTEM_$$_TMSGSTRTABLE$indirect:
 INIT_$SYSTEM_$$_TSTRINGMESSAGETABLE$indirect:
 	.quad	INIT_$SYSTEM_$$_TSTRINGMESSAGETABLE
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def0000004D,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def00000057,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def0000004D$indirect
-RTTI_$SYSTEM_$$_def0000004D$indirect:
-	.quad	RTTI_$SYSTEM_$$_def0000004D
+.globl	RTTI_$SYSTEM_$$_def00000057$indirect
+RTTI_$SYSTEM_$$_def00000057$indirect:
+	.quad	RTTI_$SYSTEM_$$_def00000057
 
 .section .rodata.n_RTTI_$SYSTEM_$$_TSTRINGMESSAGETABLE,"d"
 	.balign 8
@@ -1956,11 +2074,11 @@ RTTI_$SYSTEM_$$_TINTERFACEENTRY$indirect:
 INIT_$SYSTEM_$$_TINTERFACETABLE$indirect:
 	.quad	INIT_$SYSTEM_$$_TINTERFACETABLE
 
-.section .rodata.n_RTTI_$SYSTEM_$$_def00000054,"d"
+.section .rodata.n_RTTI_$SYSTEM_$$_def0000005E,"d"
 	.balign 8
-.globl	RTTI_$SYSTEM_$$_def00000054$indirect
-RTTI_$SYSTEM_$$_def00000054$indirect:
-	.quad	RTTI_$SYSTEM_$$_def00000054
+.globl	RTTI_$SYSTEM_$$_def0000005E$indirect
+RTTI_$SYSTEM_$$_def0000005E$indirect:
+	.quad	RTTI_$SYSTEM_$$_def0000005E
 
 .section .rodata.n_RTTI_$SYSTEM_$$_TINTERFACETABLE,"d"
 	.balign 8

@@ -6,8 +6,6 @@
 .globl	RTTI_$TYPES_$$_UINT8
 RTTI_$TYPES_$$_UINT8:
 	.byte	1,5
-# [Types.pas]
-# [73] 
 	.ascii	"UInt8"
 	.byte	1
 	.long	0,255

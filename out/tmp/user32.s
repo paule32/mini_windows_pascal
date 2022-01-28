@@ -5,8 +5,6 @@
 	.balign 16,0x90
 USER32_$$_DUMMY:
 .Lc1:
-# [user32.pas]
-# [17] procedure dummy; begin end;
 	ret
 .Lc2:
 # End asmlist al_procedures

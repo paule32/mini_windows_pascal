@@ -5,10 +5,58 @@
 // only for non-profit usage !!!
 // ----------------------------------------------------------
 {$mode delphi}
-unit system;
+unit System;
 
 interface
-uses Types;
+
+type UInt8     = 0..255;
+type UInt16    = 0..65535;
+type UInt64    = 0..18446744073709551615;
+
+type ATOM      = Word;
+type TATOM     = ATOM;
+
+type WINBOOL   = LongBool;
+type BOOL      = WINBOOL;
+
+type CCHAR     = Char;
+
+type SHORT     = SmallInt;
+type LONG      = LongInt;
+
+type Integer   = SmallInt;
+type SizeInt   = LongInt;
+
+type Cardinal  = LongWord;
+type DWORD     = LongWord;
+type DWORD64   = QWORD;
+type ULONGLONG = QWORD;
+type LONGLONG  = Int64;
+type UINT      = Cardinal;
+type UInt32    = Cardinal;
+type SizeUInt  = DWord;
+
+type PtrUInt   = DWORD;
+type THandle   = type PtrUInt;
+type HWND      = type THandle;
+type HANDLE    = type THandle;
+
+type PByte     = ^Byte;
+type PChar     = ^Char;
+
+type PAnsiChar = PChar;
+
+type TSTR      = String;
+type WSTR      = WideString;
+
+type LP        = ^Word;
+type LPBOOL    = ^WINBOOL;
+type LPBYTE    = PByte;
+type LPCCH     = PCHAR;
+type LPCH      = PCHAR;
+
+type LPCSTR    = PCHAR;
+type LPCTSTR   = PChar;
 
 type CodePointer = Pointer;
 type PShortString = ^ShortString;
@@ -207,7 +255,8 @@ type
 	end;
 
 procedure fpc_ansistr_incr_ref (    s: Pointer); compilerproc;
-procedure fpc_ansistr_decr_ref (var s: Pointer); compilerproc;
+procedure fpc_ansistr_decr_ref (var S: Pointer); compilerproc;
+procedure fpc_ansistr_assign   (dst: Pointer; var src: Pointer); compilerproc;
 
 procedure fpc_initializeunits; compilerproc;
 
@@ -234,6 +283,7 @@ implementation
 
 procedure fpc_ansistr_incr_ref (    s: Pointer); compilerproc; begin end;
 procedure fpc_ansistr_decr_ref (var s: Pointer); compilerproc; begin end;
+procedure fpc_ansistr_assign   (dst: Pointer; var src: Pointer); compilerproc; begin end;
 
 procedure fpc_initializeunits; compilerproc; begin end;
 

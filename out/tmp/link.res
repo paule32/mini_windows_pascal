@@ -6,9 +6,11 @@ INPUT(
 .\out\tmp\test1.o
 .\out\tmp\System.o
 .\out\tmp\Windows.o
+.\out\tmp\user32.o
 )
 GROUP(
 .\out\tmp\libimpkernel32.a
+.\out\tmp\libimpuser32.a
 )
 SEARCH_DIR("/usr/i686-pc-cygwin/lib"); SEARCH_DIR("/usr/lib"); SEARCH_DIR("/usr/lib/w32api");
 OUTPUT_FORMAT(pei-x86-64)

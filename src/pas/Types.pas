@@ -8,65 +8,6 @@ unit Types;
 
 interface
 
-type UInt8     =      0..255;
-type Byte      =      0..255;
-type UInt16    =      0..65535;
-type Word      =      0..65535;
-
-type Smallint  = -32768..32767;
-type Longword  =      0..4294967295;
-type UInt64    =      0..18446744073709551615;
-type QWord     =      0..18446744073709551615;
-
-type ATOM      = Word;
-type TATOM     = ATOM;
-
-type WINBOOL   = LongBool;
-type BOOL      = WINBOOL;
-
-type CCHAR     = Char;
-
-type COLORREF  = Cardinal;
-type TCOLORREF = Cardinal;
-
-type SHORT     = SmallInt;
-type LONG      = LongInt;
-
-type Integer   = SmallInt;
-type SizeInt   = LongInt;
-
-type Cardinal  = LongWord;
-type DWORD     = LongWord;
-type DWORD64   = QWORD;
-type ULONGLONG = QWORD;
-type LONGLONG  = Int64;
-type UINT      = Cardinal;
-type UInt32    = Cardinal;
-type SizeUInt  = DWord;
-
-type PtrUInt   = DWORD;
-type THandle   = type PtrUInt;
-type HWND      = type THandle;
-type HANDLE    = type THandle;
-
-type PByte     = ^Byte;
-type PChar     = ^Char;
-
-type PAnsiChar = PChar;
-
-type STR       = AnsiString;
-type TSTR      = String;
-type WSTR      = WideString;
-
-type LP        = ^Word;
-type LPBOOL    = ^WINBOOL;
-type LPBYTE    = PByte;
-type LPCCH     = PCHAR;
-type LPCH      = PCHAR;
-
-type LPCSTR    = PCHAR;
-type LPCTSTR   = PChar;
-
 implementation
 
 end.
